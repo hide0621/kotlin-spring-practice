@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("greeter")
 class GreeterController {
 
+    var greeter: Greeter? = null
     @Autowired
-    private lateinit var greeter: Greeter
+    set(value)  {
+        field = value
+    }
 
     @GetMapping("/hello")
     fun hello(@RequestParam("name")name: String): HelloResponse {
