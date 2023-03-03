@@ -1,5 +1,6 @@
 package com.example.kotlinspringpractice
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("greeter")
-class GreeterController(private val greeter: Greeter) {
+class GreeterController {
+
+    @Autowired
+    private lateinit var greeter: Greeter
 
     @GetMapping("/hello")
     fun hello(@RequestParam("name")name: String): HelloResponse {
