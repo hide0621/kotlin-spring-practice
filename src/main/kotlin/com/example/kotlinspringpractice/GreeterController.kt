@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("greeter")
-class GreeterController {
+class GreeterController(private val greeter: Greeter) {
 
     @GetMapping("/hello")
     fun hello(@RequestParam("name")name: String): HelloResponse {
@@ -27,5 +27,11 @@ class GreeterController {
     @PostMapping("/hello")
     fun helloByPost(@RequestBody request: HelloRequest): HelloResponse {
         return HelloResponse("Hell ${request.name}")
+    }
+
+    @GetMapping("/hello/byservice/{name}")
+    fun helloByService(@PathVariable("name")name: String): HelloResponse {
+        val message = greeter.sayHello(name)
+        return HelloResponse(message)
     }
 }
