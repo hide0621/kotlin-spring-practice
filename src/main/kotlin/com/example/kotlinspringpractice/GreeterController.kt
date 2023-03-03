@@ -13,13 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("greeter")
-class GreeterController {
-
-    var greeter: Greeter? = null
-    @Autowired
-    set(value)  {
-        field = value
-    }
+class GreeterController(private val greeter: Greeter) {
 
     @GetMapping("/hello")
     fun hello(@RequestParam("name")name: String): HelloResponse {
